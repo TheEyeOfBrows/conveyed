@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbfofujddu813"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_a3xh3"]
+[ext_resource type="Texture2D" uid="uid://dyw4b6k6wnig8" path="res://assets/Background.png" id="1_edbed"]
+[ext_resource type="Texture2D" uid="uid://cskypgc874fwg" path="res://material/sky_day.tres" id="2_1b5f3"]
+[ext_resource type="Texture2D" uid="uid://dssnkb3qrmgpc" path="res://material/sky_morning.tres" id="2_c1r7a"]
+[ext_resource type="Texture2D" uid="uid://cb28qn676yj12" path="res://material/sky_evening.tres" id="4_n8kxc"]
+[ext_resource type="Texture2D" uid="uid://ymo5qw5fm05l" path="res://assets/Sun.png" id="6_ld213"]
+[ext_resource type="Texture2D" uid="uid://ci4x47gekupvk" path="res://assets/path.png" id="7_1wlor"]
+[ext_resource type="Texture2D" uid="uid://rnhwkqh0eo5e" path="res://assets/House01.png" id="8_uraho"]
+
+[sub_resource type="Curve2D" id="Curve2D_eix60"]
+_data = {
+"points": PackedVector2Array(-472.347, 123.037, 472.347, -123.037, 14, 127, -473.762, -125.865, 473.762, 125.865, 959, 130)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23o7u"]
+atlas = ExtResource("6_ld213")
+region = Rect2(109, 0, 109, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj52k"]
+atlas = ExtResource("6_ld213")
+region = Rect2(0, 0, 109, 85)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3d8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23o7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj52k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_v108b"]
+_data = {
+"points": PackedVector2Array(-11.2373, 2.99661, 11.2373, -2.99661, 226, 193, -13.7502, -10.2425, 13.7502, 10.2425, 248, 184, -7.49154, -19.478, 7.49154, 19.478, 299, 237, 0, 0, 0, 0, 213, 372, -48.695, -38.2068, 48.695, 38.2068, 235, 456, 0, 0, 0, 0, 508, 500, -27.7187, 8.98984, 27.7187, -8.98984, 780, 486, -3.74577, 8.98984, 3.74577, -8.98984, 819, 449, 18.7288, 26.2204, -18.7288, -26.2204, 829, 346, 9.739, 27.7187, -9.739, -27.7187, 677, 262, 0, 0, 0, 0, 719, 197, 0, 0, 0, 0, 744, 215)
+}
+point_count = 12
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_a3xh3")
+time = 0.0
+
+[node name="Sky_Morning" type="TextureRect" parent="."]
+z_index = -100
+offset_left = -840.0
+offset_top = -72.0
+offset_right = 1771.0
+offset_bottom = 214.0
+texture = ExtResource("2_c1r7a")
+
+[node name="Sky_Day" type="TextureRect" parent="."]
+visible = false
+z_index = -99
+offset_left = -840.0
+offset_top = -72.0
+offset_right = 1771.0
+offset_bottom = 214.0
+texture = ExtResource("2_1b5f3")
+
+[node name="Sky_Evening" type="TextureRect" parent="."]
+visible = false
+z_index = -100
+offset_left = -840.0
+offset_top = -72.0
+offset_right = 1771.0
+offset_bottom = 214.0
+texture = ExtResource("4_n8kxc")
+
+[node name="Ground" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_edbed")
+
+[node name="SunPath" type="Path2D" parent="."]
+z_index = 900
+curve = SubResource("Curve2D_eix60")
+
+[node name="Sun" type="PathFollow2D" parent="SunPath"]
+position = Vector2(573.45, 40.934)
+rotation = -0.254817
+progress = 569.824
+rotates = false
+
+[node name="SunSprite" type="AnimatedSprite2D" parent="SunPath/Sun"]
+position = Vector2(-0.756207, 2.90311)
+rotation = 0.254817
+sprite_frames = SubResource("SpriteFrames_m3d8b")
+autoplay = "default"
+frame_progress = 0.1709
+
+[node name="Road" type="Line2D" parent="."]
+z_index = 1100
+points = PackedVector2Array(249, 189, 271, 202, 283, 214, 291, 223, 296, 232, 298, 250, 292, 266, 208, 384, 203, 393, 200, 402, 200, 413, 202, 423, 212, 434, 223, 446, 241, 461, 248, 467, 259, 472, 459, 496, 502, 499, 528, 499, 648, 494, 773, 485, 792, 477, 825, 441, 832, 418, 833, 363, 827, 343, 812, 329, 770, 317, 699, 283, 682, 267, 673, 252, 684, 229, 709, 214)
+width = 16.0
+texture = ExtResource("7_1wlor")
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="RoadPath" type="Path2D" parent="."]
+z_index = 1100
+curve = SubResource("Curve2D_v108b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="RoadPath"]
+position = Vector2(226, 193)
+rotation = 0.0608938
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RoadPath/PathFollow2D"]
+texture = ExtResource("8_uraho")
