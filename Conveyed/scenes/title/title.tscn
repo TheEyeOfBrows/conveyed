@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxxi5k4ww5qmw"]
+
+[ext_resource type="Script" path="res://scenes/title/title.gd" id="1_brfms"]
+[ext_resource type="Texture2D" uid="uid://dwi2t02r45qqy" path="res://assets/Tree01.png" id="2_5s14d"]
+[ext_resource type="Texture2D" uid="uid://cb28qn676yj12" path="res://material/sky_evening.tres" id="2_glxgk"]
+[ext_resource type="Texture2D" uid="uid://bv30mwjnk3o2y" path="res://assets/Windmill01.png" id="3_nukgw"]
+[ext_resource type="Texture2D" uid="uid://dvm05fdd4mmrb" path="res://assets/Windmill01_fan.png" id="4_vjwew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1n0b"]
+atlas = ExtResource("4_vjwew")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylrru"]
+atlas = ExtResource("4_vjwew")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xomxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1n0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylrru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_brfms")
+metadata/_edit_lock_ = true
+
+[node name="Decorations" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Decorations"]
+self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_glxgk")
+
+[node name="Tree01" type="Sprite2D" parent="Decorations"]
+position = Vector2(332, 173)
+texture = ExtResource("2_5s14d")
+
+[node name="Tree02" type="Sprite2D" parent="Decorations"]
+position = Vector2(278, 230)
+texture = ExtResource("2_5s14d")
+
+[node name="Tree03" type="Sprite2D" parent="Decorations"]
+position = Vector2(331, 246)
+texture = ExtResource("2_5s14d")
+
+[node name="Windmill01" type="Sprite2D" parent="Decorations"]
+position = Vector2(695, 224)
+texture = ExtResource("3_nukgw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations"]
+position = Vector2(697, 214)
+sprite_frames = SubResource("SpriteFrames_xomxk")
+autoplay = "default"
+frame_progress = 0.545815
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="JamName" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="GameName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Conveyed"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="Load" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Load"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Options"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]

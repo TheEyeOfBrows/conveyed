@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbfofujddu813"]
+[gd_scene load_steps=18 format=3 uid="uid://bbfofujddu813"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_a3xh3"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_a3xh3"]
 [ext_resource type="Texture2D" uid="uid://dyw4b6k6wnig8" path="res://assets/Background.png" id="1_edbed"]
 [ext_resource type="Texture2D" uid="uid://cskypgc874fwg" path="res://material/sky_day.tres" id="2_1b5f3"]
 [ext_resource type="Texture2D" uid="uid://dssnkb3qrmgpc" path="res://material/sky_morning.tres" id="2_c1r7a"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ymo5qw5fm05l" path="res://assets/Sun.png" id="6_ld213"]
 [ext_resource type="Texture2D" uid="uid://ci4x47gekupvk" path="res://assets/path.png" id="7_1wlor"]
 [ext_resource type="Texture2D" uid="uid://rnhwkqh0eo5e" path="res://assets/House01.png" id="8_uraho"]
+[ext_resource type="Texture2D" uid="uid://cd5jvb07uyded" path="res://assets/GameOverBox.png" id="9_rbkeb"]
 
 [sub_resource type="Curve2D" id="Curve2D_eix60"]
 _data = {
@@ -42,6 +43,28 @@ _data = {
 "points": PackedVector2Array(-11.2373, 2.99661, 11.2373, -2.99661, 226, 193, -13.7502, -10.2425, 13.7502, 10.2425, 248, 184, -7.49154, -19.478, 7.49154, 19.478, 299, 237, 0, 0, 0, 0, 213, 372, -48.695, -38.2068, 48.695, 38.2068, 235, 456, 0, 0, 0, 0, 508, 500, -27.7187, 8.98984, 27.7187, -8.98984, 780, 486, -3.74577, 8.98984, 3.74577, -8.98984, 819, 449, 18.7288, 26.2204, -18.7288, -26.2204, 829, 346, 9.739, 27.7187, -9.739, -27.7187, 677, 262, 0, 0, 0, 0, 719, 197, 0, 0, 0, 0, 744, 215)
 }
 point_count = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joequ"]
+atlas = ExtResource("9_rbkeb")
+region = Rect2(0, 0, 715, 225)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6g2l"]
+atlas = ExtResource("9_rbkeb")
+region = Rect2(0, 225, 715, 225)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwhex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joequ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6g2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a3xh3")
@@ -116,3 +139,37 @@ rotates = false
 
 [node name="Sprite2D" type="Sprite2D" parent="RoadPath/PathFollow2D"]
 texture = ExtResource("8_uraho")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+z_index = 2000
+layout_mode = 3
+anchors_preset = 0
+offset_right = 959.0
+offset_bottom = 307.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOver"]
+position = Vector2(482, 130)
+sprite_frames = SubResource("SpriteFrames_mwhex")
+autoplay = "default"
+frame_progress = 0.440857
+
+[node name="Label" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 67.0
+offset_right = 311.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 51
+text = "Day's Over"
+
+[node name="Button" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 674.0
+offset_top = 146.0
+offset_right = 784.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 36
+text = "Again!"
+
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_restart_pressed"]

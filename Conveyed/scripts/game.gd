@@ -17,6 +17,7 @@ func _ready():
 	
 func _process(delta):
 	if progressTime >= game_length:
+		$GameOver.visible = true
 		return
 	progressTime += delta
 		
@@ -34,3 +35,7 @@ func _process(delta):
 		$Ground.self_modulate = lerp(ground_day, ground_evening, mod_percent)
 	else:
 		$Ground.self_modulate = ground_day
+
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
