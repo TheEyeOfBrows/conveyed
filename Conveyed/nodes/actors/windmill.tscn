@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://gp813s5dojrh"]
+
+[ext_resource type="PackedScene" uid="uid://cio0dm5hbksf0" path="res://Tools/Draggable.tscn" id="1_sdxhl"]
+[ext_resource type="Texture2D" uid="uid://bv30mwjnk3o2y" path="res://assets/Windmill01.png" id="2_uuwgw"]
+[ext_resource type="Texture2D" uid="uid://dvm05fdd4mmrb" path="res://assets/Windmill01_fan.png" id="3_8yf0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvrmm"]
+atlas = ExtResource("3_8yf0k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb4lk"]
+atlas = ExtResource("3_8yf0k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vb56c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvrmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb4lk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Control" instance=ExtResource("1_sdxhl")]
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_uuwgw")
+stretch_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(33, 26)
+sprite_frames = SubResource("SpriteFrames_vb56c")
+autoplay = "default"
+frame_progress = 0.218372
+
+[node name="Handle" parent="." index="2"]
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="collisionmap" parent="." index="3"]
+cell_quadrant_size = 32

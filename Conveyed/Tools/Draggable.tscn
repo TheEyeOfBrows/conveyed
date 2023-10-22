@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cio0dm5hbksf0"]
+
+[ext_resource type="Script" path="res://Tools/Draggable.gd" id="1_muilq"]
+[ext_resource type="Script" path="res://Tools/DragHandle.gd" id="2_8wlnh"]
+[ext_resource type="PackedScene" uid="uid://dr3bydjycfq5j" path="res://Tools/GuidePoint.tscn" id="3_2a1xq"]
+[ext_resource type="TileSet" uid="uid://e2xjlr1hu24q" path="res://Tools/Obstruction_Tileset.tres" id="4_1l4ww"]
+
+[node name="Draggable" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_muilq")
+
+[node name="Handle" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 10.0
+offset_bottom = 10.0
+mouse_default_cursor_shape = 13
+script = ExtResource("2_8wlnh")
+DragPoint = ExtResource("3_2a1xq")
+
+[node name="collisionmap" type="TileMap" parent="."]
+tile_set = ExtResource("4_1l4ww")
+format = 2

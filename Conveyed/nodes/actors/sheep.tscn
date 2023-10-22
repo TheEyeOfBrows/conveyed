@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ioxxhp8t80q"]
+
+[ext_resource type="PackedScene" uid="uid://cio0dm5hbksf0" path="res://Tools/Draggable.tscn" id="1_18oug"]
+[ext_resource type="Texture2D" uid="uid://sdn4l32ym6i2" path="res://assets/Sheep01.png" id="2_ara14"]
+
+[node name="Control" instance=ExtResource("1_18oug")]
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ara14")
+stretch_mode = 2
+
+[node name="Handle" parent="." index="1"]
+offset_right = 32.0
+offset_bottom = 32.0

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b58y6rn6mm"]
+
+[ext_resource type="PackedScene" uid="uid://cio0dm5hbksf0" path="res://Tools/Draggable.tscn" id="1_hj0nj"]
+[ext_resource type="Texture2D" uid="uid://rnhwkqh0eo5e" path="res://assets/House01.png" id="2_pg8g7"]
+
+[node name="Control" instance=ExtResource("1_hj0nj")]
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_pg8g7")
+stretch_mode = 2
+
+[node name="Handle" parent="." index="1"]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 33.0
+offset_bottom = 34.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbfofujddu813"]
+[gd_scene load_steps=22 format=3 uid="uid://bbfofujddu813"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_a3xh3"]
 [ext_resource type="Texture2D" uid="uid://dyw4b6k6wnig8" path="res://assets/Background.png" id="1_edbed"]
@@ -7,8 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cb28qn676yj12" path="res://material/sky_evening.tres" id="4_n8kxc"]
 [ext_resource type="Texture2D" uid="uid://ymo5qw5fm05l" path="res://assets/Sun.png" id="6_ld213"]
 [ext_resource type="Texture2D" uid="uid://ci4x47gekupvk" path="res://assets/path.png" id="7_1wlor"]
-[ext_resource type="Texture2D" uid="uid://rnhwkqh0eo5e" path="res://assets/House01.png" id="8_uraho"]
 [ext_resource type="Texture2D" uid="uid://cd5jvb07uyded" path="res://assets/GameOverBox.png" id="9_rbkeb"]
+[ext_resource type="PackedScene" uid="uid://sck6qsg5bblc" path="res://Tools/Droparea.tscn" id="10_8i3wr"]
+[ext_resource type="Texture2D" uid="uid://bsk3ca45lw16f" path="res://assets/grid.png" id="11_m4cwe"]
+[ext_resource type="PackedScene" uid="uid://c2ioxxhp8t80q" path="res://nodes/actors/sheep.tscn" id="12_c7gp6"]
+[ext_resource type="PackedScene" uid="uid://b58y6rn6mm" path="res://nodes/actors/house.tscn" id="13_ls3xg"]
+[ext_resource type="PackedScene" uid="uid://gp813s5dojrh" path="res://nodes/actors/windmill.tscn" id="14_2d0bk"]
 
 [sub_resource type="Curve2D" id="Curve2D_eix60"]
 _data = {
@@ -132,13 +136,13 @@ end_cap_mode = 2
 z_index = 1100
 curve = SubResource("Curve2D_v108b")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="RoadPath"]
+[node name="RoadFollower" type="PathFollow2D" parent="RoadPath"]
 position = Vector2(226, 193)
 rotation = 0.0608938
 rotates = false
 
-[node name="Sprite2D" type="Sprite2D" parent="RoadPath/PathFollow2D"]
-texture = ExtResource("8_uraho")
+[node name="Windmill" parent="RoadPath/RoadFollower" instance=ExtResource("14_2d0bk")]
+clip_contents = true
 
 [node name="GameOver" type="Control" parent="."]
 visible = false
@@ -171,5 +175,30 @@ offset_right = 784.0
 offset_bottom = 196.0
 theme_override_font_sizes/font_size = 36
 text = "Again!"
+
+[node name="Droparea" parent="." instance=ExtResource("10_8i3wr")]
+offset_left = 268.0
+offset_top = 307.0
+offset_right = 748.0
+offset_bottom = 467.0
+collision_map_visible = true
+
+[node name="TextureRect" type="TextureRect" parent="Droparea"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_m4cwe")
+
+[node name="Sheep" parent="." instance=ExtResource("12_c7gp6")]
+offset_left = 86.0
+offset_top = 345.0
+offset_right = 118.0
+offset_bottom = 377.0
+
+[node name="House" parent="." instance=ExtResource("13_ls3xg")]
+offset_left = 68.0
+offset_top = 416.0
+offset_right = 100.0
+offset_bottom = 448.0
 
 [connection signal="pressed" from="GameOver/Button" to="." method="_on_restart_pressed"]

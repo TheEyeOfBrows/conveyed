@@ -20,6 +20,7 @@ func _process(delta):
 		$GameOver.visible = true
 		return
 	progressTime += delta
+	$RoadPath/RoadFollower.progress_ratio += delta * 0.1
 		
 	progress = inverse_lerp(0, game_length, progressTime)
 	$SunPath/Sun.progress_ratio = min(progress, 1.0)

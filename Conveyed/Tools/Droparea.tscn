@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://sck6qsg5bblc"]
+
+[ext_resource type="Script" path="res://Tools/Droparea.gd" id="1_fwg22"]
+[ext_resource type="TileSet" uid="uid://e2xjlr1hu24q" path="res://Tools/Obstruction_Tileset.tres" id="2_n7nce"]
+
+[node name="Droparea" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 500.0
+script = ExtResource("1_fwg22")
+
+[node name="CollisionMap" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource("2_n7nce")
+cell_quadrant_size = 32
+format = 2

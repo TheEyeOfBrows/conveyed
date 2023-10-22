@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr3bydjycfq5j"]
+
+[ext_resource type="Script" path="res://Tools/Guidepoint.gd" id="1_c7crb"]
+
+[node name="GuidePoint" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_c7crb")
