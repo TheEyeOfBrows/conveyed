@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbfofujddu813"]
+[gd_scene load_steps=20 format=3 uid="uid://bbfofujddu813"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_a3xh3"]
 [ext_resource type="Texture2D" uid="uid://dyw4b6k6wnig8" path="res://assets/Background.png" id="1_edbed"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cd5jvb07uyded" path="res://assets/GameOverBox.png" id="9_rbkeb"]
 [ext_resource type="PackedScene" uid="uid://sck6qsg5bblc" path="res://Tools/Droparea.tscn" id="10_8i3wr"]
 [ext_resource type="Texture2D" uid="uid://bsk3ca45lw16f" path="res://assets/grid.png" id="11_m4cwe"]
-[ext_resource type="PackedScene" uid="uid://c2ioxxhp8t80q" path="res://nodes/actors/sheep.tscn" id="12_c7gp6"]
-[ext_resource type="PackedScene" uid="uid://b58y6rn6mm" path="res://nodes/actors/house.tscn" id="13_ls3xg"]
 [ext_resource type="PackedScene" uid="uid://gp813s5dojrh" path="res://nodes/actors/windmill.tscn" id="14_2d0bk"]
 
 [sub_resource type="Curve2D" id="Curve2D_eix60"]
@@ -73,7 +71,7 @@ animations = [{
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a3xh3")
 time = 0.0
-game_length = 5.935
+game_length = 20.0
 
 [node name="Sky_Morning" type="TextureRect" parent="."]
 z_index = -100
@@ -137,6 +135,7 @@ z_index = 1100
 curve = SubResource("Curve2D_v108b")
 
 [node name="RoadFollower" type="PathFollow2D" parent="RoadPath"]
+visible = false
 position = Vector2(226, 193)
 rotation = 0.0608938
 rotates = false
@@ -158,16 +157,16 @@ sprite_frames = SubResource("SpriteFrames_mwhex")
 autoplay = "default"
 frame_progress = 0.440857
 
-[node name="Label" type="Label" parent="GameOver"]
+[node name="title" type="Label" parent="GameOver"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 67.0
-offset_right = 311.0
-offset_bottom = 110.0
+offset_left = 167.0
+offset_top = 68.0
+offset_right = 407.0
+offset_bottom = 131.0
 theme_override_font_sizes/font_size = 51
 text = "Day's Over"
 
-[node name="Button" type="Button" parent="GameOver"]
+[node name="Again" type="Button" parent="GameOver"]
 layout_mode = 0
 offset_left = 674.0
 offset_top = 146.0
@@ -175,6 +174,24 @@ offset_right = 784.0
 offset_bottom = 196.0
 theme_override_font_sizes/font_size = 36
 text = "Again!"
+
+[node name="ToTitle" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 68.0
+offset_right = 795.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 36
+text = "Back to title"
+
+[node name="text" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 153.0
+offset_right = 629.0
+offset_bottom = 203.0
+theme_override_font_sizes/font_size = 26
+text = "You should be proud"
 
 [node name="Droparea" parent="." instance=ExtResource("10_8i3wr")]
 offset_left = 268.0
@@ -189,16 +206,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("11_m4cwe")
 
-[node name="Sheep" parent="." instance=ExtResource("12_c7gp6")]
-offset_left = 86.0
-offset_top = 345.0
-offset_right = 118.0
-offset_bottom = 377.0
-
-[node name="House" parent="." instance=ExtResource("13_ls3xg")]
-offset_left = 68.0
-offset_top = 416.0
-offset_right = 100.0
-offset_bottom = 448.0
-
-[connection signal="pressed" from="GameOver/Button" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/Again" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/ToTitle" to="." method="_on_to_title_pressed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://r7e85ountuca"]
+
+[ext_resource type="PackedScene" uid="uid://cio0dm5hbksf0" path="res://Tools/Draggable.tscn" id="1_1etom"]
+[ext_resource type="Texture2D" uid="uid://dwi2t02r45qqy" path="res://assets/Tree01.png" id="2_u2upl"]
+
+[node name="Control" instance=ExtResource("1_1etom")]
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_u2upl")
+stretch_mode = 2
+
+[node name="Handle" parent="." index="1"]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 33.0
+offset_bottom = 34.0
+
+[node name="collisionmap" parent="." index="2"]
+cell_quadrant_size = 32

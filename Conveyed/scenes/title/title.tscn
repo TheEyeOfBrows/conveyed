@@ -102,6 +102,7 @@ horizontal_alignment = 1
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "Start"
 
 [node name="Load" type="Button" parent="VBoxContainer"]
@@ -113,7 +114,18 @@ text = "Load"
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "Options"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 492.0
+offset_right = 959.0
+offset_bottom = 525.0
+rotation = -0.261799
+theme_override_font_sizes/font_size = 26
+text = "It's played entirely with the mouse / touch!"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_pressed"]
